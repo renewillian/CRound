@@ -1,2 +1,2 @@
 # CRound
- rotina de arredondamento para VB6 e Cobol
+ Rotina de arredondamento para VB6 e Cobol
