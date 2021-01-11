@@ -1,2 +1,2 @@
 # CRound
- Rotina de arredondamento para VB6 e Cobol
+ Rotina de arredondamento de casas decimais para VB6 e Cobol
