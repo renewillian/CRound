@@ -1,0 +1,25 @@
+Private Function CRound(pValor As Double, Optional pDecimais As Integer = 0) As Double
+  'Rotina de arredondamento para manter compatibilidade com a forma de arredondamento feito pelo COBOL.
+  On Error Resume Next
+  Dim strValor As String, strValorInt As String, strValorDec As String, posicaoVirgula As Integer
+  Dim strParteDecimal As String, DigitoArredondar As Integer
+  If IsNumeric(pValor) Then
+     strValor = CDec(pValor)
+     posicaoVirgula = InStr(1, strValor, ",")
+     If posicaoVirgula > 0 Then
+        strParteDecimal = Trim(Mid(strValor, posicaoVirgula + 1))
+        DigitoArredondar = Val(Mid(strParteDecimal, pDecimais + 1, 1))
+        If DigitoArredondar = 5 Then DigitoArredondar = DigitoArredondar + 1
+        strValorInt = Left(strValor, posicaoVirgula - 1)
+        strValorDec = Trim(Mid(strValor, posicaoVirgula + 1, pDecimais))
+        strValor = strValorInt & "," & strValorDec & DigitoArredondar
+        If Not IsNumeric(strValor) Then strValor = "0"
+        strValor = Round(strValor, pDecimais)
+        CRound = CDbl(strValor)
+     Else
+        CRound = pValor
+     End If
+  Else
+     CRound = 0
+  End If
+End Function
